@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>一起学习js模板引擎</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <script src="js/userService.js"></script>
+    <script>
+    function showData(data) {
+        return '<span class="name">' + data.body.name + '</span>' + '生活在' + '<a href="#">' + data.body.location + '</a>';
+    }
+
+    userService.getUser('/v1/user').then(function(res) {
+        // 成功返回后，执行逻辑
+        document.querySelector('body').innerHTML = showData(res);
+    })
+
+    </script>
+</body>
+
+</html>

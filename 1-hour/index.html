@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>一起学习js模板引擎</title>
+</head>
+
+<body>
+    <script>
+    var res = {
+        body: {
+            name: 'supershy',
+            location: '西安'
+        }
+    }
+
+    function showData(data) {
+        return data.body.name + '生活在' + data.body.location;
+    }
+
+    document.querySelector('body').innerHTML = showData(res);
+    </script>
+</body>
+
+</html>

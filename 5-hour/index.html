@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>一起学习js模板引擎</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <script id="user-list-tmpl" type="x-tmpl-mustache">
+        {{#users}} {{> user}} {{/users}}
+    </script>
+    <script id="user-tmpl" type="x-tmpl-mustache">
+        <div class="user-item">
+            <span class="name">{{name}}</span>生活在<a href="#">{{location}}</a>!
+        </div>
+    </script>
+    <script src="https://cdn.bootcss.com/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="js/userService.js"></script>
+    <script>
+    function renderUser(data) {
+        var userListTmpl = document.querySelector('#user-list-tmpl').innerHTML;
+        Mustache.parse(userListTmpl);
+        var rendered = Mustache.render(userListTmpl, data, {
+            user: document.querySelector('#user-tmpl').innerHTML
+        });
+
+        return rendered;
+    }
+    userService.getUser('/v1/user').then(function(res) {
+        document.querySelector('body').innerHTML = renderUser(res.body);
+    })
+    </script>
+</body>
+
+</html>
